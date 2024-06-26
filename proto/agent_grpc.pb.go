@@ -4,7 +4,7 @@
 // - protoc             v5.27.2
 // source: proto/agent.proto
 
-package helloworld
+package proto
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewAgentClient(cc grpc.ClientConnInterface) AgentClient {
 
 func (c *agentClient) SayHello(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*AgentReply, error) {
 	out := new(AgentReply)
-	err := c.cc.Invoke(ctx, "/helloworld.Agent/SayHello", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/genagent.proto.Agent/SayHello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func _Agent_SayHello_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/helloworld.Agent/SayHello",
+		FullMethod: "/genagent.proto.Agent/SayHello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentServer).SayHello(ctx, req.(*AgentRequest))
@@ -94,7 +94,7 @@ func _Agent_SayHello_Handler(srv interface{}, ctx context.Context, dec func(inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Agent_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "helloworld.Agent",
+	ServiceName: "genagent.proto.Agent",
 	HandlerType: (*AgentServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
